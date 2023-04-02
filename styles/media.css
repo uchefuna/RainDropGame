@@ -1,0 +1,117 @@
+@media screen and (max-width: 1500px) {
+  .raindivbox2 {
+    padding: 0 4% 3%;
+  }
+
+  .raindivbox3 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .maincontainer {
+    margin: 0;
+  }
+
+  .rainheader {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .myprofile {
+    margin: 5% 0;
+  }
+
+  .displaycenter {
+    margin: 0 0 2%;
+    padding: 0 0 4%;
+  }
+
+  .displayscores {
+    margin: 0 0 3%;
+  }
+
+  .scoretext0 {
+    height: 45px;
+  }
+
+  .scoreboard0 {
+    height: 60px;
+  }
+
+  .scoreboard2 {
+    padding: 0 2%;
+  }
+
+  #displaybox {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .raindivbox1 {
+    order: 1;
+    margin: 0 0 2%;
+  }
+
+  .raindivbox1>div p {
+    font-size: 0.7em;
+  }
+
+  .raindivbox1>div span {
+    padding: 0;
+    font-size: 0.8em;
+    border-radius: 6px;
+    left: 9.5%;
+  }
+
+  .raindivbox2 {
+    order: 3;
+    margin: 0;
+  }
+
+  .caldisply {
+    margin: 10% 3% 5%;
+  }
+
+  .calbody input {
+    width: 70px;
+    height: 70px;
+    font-size: 2em;
+  }
+
+  .raindivbox3 {
+    order: 2;
+    display: flex;
+    margin: 0 0 2%;
+  }
+
+  .raindivbox3>div h4 {
+    font-size: 1em;
+    margin: 3% 0;
+  }
+
+  .raindivbox3>div p {
+    font-size: 0.6em;
+  }
+
+  .raindivbox3>div span {
+    font-size: 1.6em;
+  }
+
+  .modalcontainer {
+    padding-top: 300px;
+  }
+
+  #modalcontent {
+    width: 80%;
+    margin: auto;
+  }
+
+  .modalbody input {
+    font-size: 1.5em;
+  }
+
+  .modalfooter>button {
+    font-size: 1em;
+  }
+}

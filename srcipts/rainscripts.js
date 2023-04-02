@@ -14,21 +14,29 @@ let rainDropsCnt = 0;
 //variable to count number of rain drop the player collected
 let rainDropCollect = 0;
 
+let remdivChild; //variabl to remove the div child
+
 //an array used to award prizes when the play reached a certain level
 const rainReward = ["Bronze", "Silver", "Gold", "Platinum"];
 
 //getting the elements of the HTML
 const playStart = document.getElementById('playstart');
+const rainBoxeDiv = document.querySelector('.raindivbox1>div');
+const rainScreen = document.querySelector('.raindivbox3');
 const rainBoxes = document.querySelectorAll('.rainboxes');
 const htmlConsole1 = document.querySelectorAll('.displ1');
 const htmlConsole2 = document.querySelectorAll('.displ2');
 const rainScores = document.querySelectorAll('.raininfo');
 const modalBox = document.querySelectorAll('.modalbox');
+const qml = window.matchMedia("(max-width:1100px)")
 
 //variable used to start and stop the game
 let stopRain = false;
 
 playStart.focus();
+
+htmlConsole2[13].innerHTML =
+  'Rain Div height is ' + rainScreen.offsetHeight;
 
 //click functionality of the HTML
 window.onclick = event => {
@@ -60,32 +68,33 @@ window.onclick = event => {
   }
 }
 
-let remdivChild; //variabl to remove the div child
+qml.addEventListener('change', () => {
+  if (qml.matches) {
+    rainBoxeDiv.style.height = rainScreen.offsetHeight + 'px';
+  } else {
+    rainBoxeDiv.style.height = 'auto';
+  }
 
-//function to initialize the game
-function initProcess() {
-  console.clear(), claerHTMLDisplay();
-  modalBoxCall('Passcode', 'Enter the Passcode');
+  if (modalBox[0].style.display === "none") {
+    remdivChild.remove();
+  } else {
+    remdivChild.remove();
+    prodGhild();
+  }
+});
 
-  let twowords1 = "Enter the passcode to continue.";
-  console.log(twowords1);
-  htmlConsole1[11].innerHTML = twowords1;
 
-  modalBox[0].animate(
-    [
-      { top: "-300px", opacity: "0" },
-      { top: "0", opacity: "0.5" },
-    ],
-    {
-      duration: 170,
-    }
-  );
-
+function prodGhild() {
   setTimeout(function () {
-    // let divChild1 = document.createElement('div');
+    let fz = '';
+    if (qml.matches) {
+      fz = 'font-size: 0.9em;';
+    } else {
+      fz = 'font-size: 1,2em;';
+    }
     let divChild = document.getElementById('modalcontent').appendChild(document.createElement('div'));
     remdivChild = divChild;
-    divChild.style.cssText = 'text-align: center; height: 50px; background-color: #444343;';
+    divChild.style.cssText = 'text-align: center; height: 50px; background-color: #444343;' + fz;
 
     let paraChild = divChild.appendChild(document.createElement('p'));
     paraChild.innerHTML = 'Passcode: ';
@@ -106,12 +115,34 @@ function initProcess() {
   }, 700);
 }
 
+//function to initialize the game
+function initProcess() {
+  console.clear(), claerHTMLDisplay();
+  modalBoxCall('Passcode', 'Enter the Passcode');
+
+  let twowords1 = "Enter the passcode to continue.";
+  console.log(twowords1);
+  htmlConsole1[11].innerHTML = twowords1;
+
+  modalBox[0].animate(
+    [
+      { top: "-300px", opacity: "0" },
+      { top: "0", opacity: "0.5" },
+    ],
+    {
+      duration: 170,
+    }
+  );
+
+  prodGhild();
+}
+
 //function to clear display of the HTML
 function claerHTMLDisplay() {
-  for (i = 0; i < htmlConsole1.length; i++) {
+  for (i = 0; i < htmlConsole1.length - 1; i++) {
     htmlConsole1[i].innerHTML = '';
   }
-  for (i = 0; i < htmlConsole2.length; i++) {
+  for (i = 0; i < htmlConsole2.length - 2; i++) {
     htmlConsole2[i].innerHTML = '';
   }
   for (i = 0; i < rainScores.length; i++) {
@@ -121,7 +152,6 @@ function claerHTMLDisplay() {
 
 //function to call the Modal box
 function modalBoxCall(lebel, inputspace) {
-  document.body.style.overflow = "hidden";
   document.body.style.height = "100%";
   modalBox[0].style.display = "block";
   modalBox[2].textContent = lebel;
@@ -131,6 +161,8 @@ function modalBoxCall(lebel, inputspace) {
 
 //function to remove the Modal box
 function modalRmoval() {
+  remdivChild.remove();
+  modalBox[3].value = '';
   modalBox[0].animate({
     opacity: [1, 0.5, 0],
     top: ['0px', '-100px', '-300px', '-500px', '-1000px'],
@@ -138,7 +170,7 @@ function modalRmoval() {
 
   setTimeout(function () {
     modalBox[0].style.display = "none";
-    remdivChild.remove();
+    document.body.style.height = "auto";
   }, 320)
 }
 
@@ -173,7 +205,7 @@ modalBox[3].addEventListener('keydown', event => {
 
 //listening events to mouseover the rain drops and score points
 function rainEvents(rainbox, rainDropValue, displaybox, i) {
-  rainbox.addEventListener('mouseover', event => {
+  rainbox.addEventListener('mouseover', () => {
     if (stopRain) {
       rainDropValue++
       let twowords5 = "rain collected(Skybox" + i + "): " + rainDropValue;
@@ -185,19 +217,19 @@ function rainEvents(rainbox, rainDropValue, displaybox, i) {
       //rewards
       rainDropCollect++
       switch (rainDropCollect) {
-        case (2 * rainCycles):
+        case (rainCycles):
           console.log(rainReward[0]);
           rainScores[3].innerHTML = rainReward[0];
           break;
-        case (4 * rainCycles):
+        case (2 * rainCycles):
           console.log(rainReward[1]);
           rainScores[3].innerHTML = rainReward[1];
           break;
-        case (6 * rainCycles):
+        case (3 * rainCycles):
           console.log(rainReward[2]);
           rainScores[3].innerHTML = rainReward[2];
           break;
-        case (8 * rainCycles):
+        case (4 * rainCycles):
           console.log(rainReward[3]);
           rainScores[3].innerHTML = rainReward[3];
           break;
@@ -368,14 +400,12 @@ function rainAnimateTimer(rainAdventure, displaybox, rainbox, rainDrop, rainDrop
 
   rainbox.animate(
     [
-      // keyframes
       { top: "0" },
-      { top: "560px" },
+      { top: (rainScreen.offsetHeight - 25) + "px" },
+
     ],
     {
-      // timing options
       duration: rainDelay,
-      // iterations: Infinity,
     }
   );
 
@@ -397,14 +427,14 @@ function rainAnimateTimer(rainAdventure, displaybox, rainbox, rainDrop, rainDrop
         a[i] = 'a' + i;
       }
 
-      if (a[0] == 'a0' && a[1] == 'a1' && a[2] == 'a2' && a[3] == 'a3' && a[4] == 'a4' && a[5] == 'a5' && a[6] == 'a6' && a[7] == 'a7' && a[8] == 'a8' && a[9] == 'a9') {
+      if (a.length >= 10) {
         a = [];
         keysCycles--;
         if (keysCycles == 0) {
           endRainDorp();
         }
-        htmlConsole1[13].innerHTML = "raincycles: " + rainCycles;
-        htmlConsole2[13].innerHTML = "keyscycles: " + keysCycles;
+        htmlConsole1[12].innerHTML = "raincycles: " + rainCycles;
+        htmlConsole2[12].innerHTML = "keyscycles: " + keysCycles;
       }
     }
   }, rainDelay);
@@ -421,7 +451,7 @@ function rainAnimateTimer(rainAdventure, displaybox, rainbox, rainDrop, rainDrop
   }, rainDelay + 500);
 }
 
-//------- 10 individual function of the rain drop -----------------------
+//------- 10 individual function of the rain drop --------------------------------
 function rainAdventure01(rainDrop01, interval) {
   if (stopRain) {
     rainAnimateTimer(rainAdventure01, htmlConsole1[1], rainBoxes[0], rainDrop01, interval, 1);
@@ -481,58 +511,67 @@ function rainAdventure10(rainDrop10, interval) {
     rainAnimateTimer(rainAdventure10, htmlConsole1[10], rainBoxes[9], rainDrop10, interval, 10);
   }
 }
-//-----------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 
-//------------------- STANDARD CALCULATOR ----------------------------
+//------------------- STANDARD CALCULATOR ----------------------------------------
 const keyValues = document.querySelectorAll('.calbody input');
 const calDisplay = document.querySelector('.caldisply p');
 
 let equalKey;
-let onOffKeys = false;
+let onOffKeys;
 let stopCal = false;
 htmlConsole2[14].innerHTML =
-  'The Calculator is OFF';
+  "The Calculator is <strong>OFF</strong><br> Turn the calculator ON to use it.";
 calDisplay.innerHTML = "<span style='color:red;'>" + 'OFF' + "</span>";
 
+// computing the working logic of the calculator
 function calculatorLogic(event) {
+
+  // listen for a key press and perform the required task
   for (i = 0; i < keyValues.length; i++) {
     if (event.target == keyValues[i]) {
+
+      // toggle the calculator on/off
       if (keyValues[i].value == 'ON' || keyValues[i].value == 'OFF') {
         if (keyValues[i].value == 'ON') { stopCal = true; calDisplay.innerHTML = "<span style='color:gold;'>" + keyValues[i].value + "</span>"; }
         else if (keyValues[i].value == 'OFF') { stopCal = false; calDisplay.innerHTML = "<span style='color:red;'>" + keyValues[i].value + "</span>"; }
+        // htmlConsole2[14].innerHTML = '';
+        onOffKeys = keyValues[i].value == 'OFF' ? "Turn the calculator ON to use it." : '';
         htmlConsole2[14].innerHTML =
-          'The Calculator is ' + keyValues[i].value;
-
+          'The Calculator is ' + '<strong>' + keyValues[i].value + '</strong>' + '<br>' + onOffKeys;
         onOffKeys = true;
       }
 
       if (stopCal && keyValues[i].value != 'ON' && keyValues[i].value != 'OFF') {
+
+        //change background colour at a key press
         keyValues[i].style.cssText = 'background-color: rgba(108, 28, 139, 0.247);';
         colorClick();
 
+        //clear calculator display after pressing the on/off keys
         if (onOffKeys) {
           htmlConsole2[14].innerHTML = '';
           calDisplay.innerHTML = '';
           onOffKeys = false;
         }
 
-        if (keyValues[i].value == 'AC') {
+        if (keyValues[i].value == 'AC') { //if key AC is pressed, display value
           htmlConsole2[14].innerHTML = '';
           calDisplay.innerHTML = '';
-        } else if (keyValues[i].value == '%' || keyValues[i].value == 'M+' || keyValues[i].value == 'M-') {
+        } else if (keyValues[i].value == '%' || keyValues[i].value == 'M+' || keyValues[i].value == 'M-') { //if key %,M+,M- is pressed, display value
           htmlConsole2[14].innerHTML += '';
           calDisplay.innerHTML += '';
-        } else if (keyValues[i].value == 'DC') {
+        } else if (keyValues[i].value == 'DC') {//if key DC is pressed, display value
           htmlConsole2[14].innerHTML = htmlConsole2[14].innerHTML.toString().slice(0, -1);
           calDisplay.innerHTML = calDisplay.innerHTML.toString().slice(0, -1);
-        } else if (keyValues[i].value == '=') {
+        } else if (keyValues[i].value == '=') {//if key = is pressed, display value
           equalKey = '=';
           htmlConsole2[14].innerHTML = eval(htmlConsole2[14].innerHTML);
           if (Number.isInteger(eval(calDisplay.innerHTML)))
             calDisplay.innerHTML = eval(calDisplay.innerHTML);
           else
             calDisplay.innerHTML = eval(calDisplay.innerHTML).toPrecision(8);
-        } else {
+        } else {//if other remianing keys is pressed, display value
           if ((equalKey === '=') && (keyValues[i].value != '/' && keyValues[i].value != '*' && keyValues[i].value != '+' && keyValues[i].value != '-')) {
             htmlConsole2[14].innerHTML = '';
             calDisplay.innerHTML = '';
@@ -549,6 +588,7 @@ function calculatorLogic(event) {
   }
 }
 
+//function to put back the original key's background colour
 function colorClick() {
   setTimeout(function () {
     for (i = 0; i < keyValues.length; i++) {
@@ -559,4 +599,4 @@ function colorClick() {
   }, 200)
 }
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------------------

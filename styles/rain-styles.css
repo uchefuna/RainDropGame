@@ -18,47 +18,48 @@ body {
 .rainheader {
   display: flex;
   padding: 0.2% 0;
-  width: 100%;
   height: 130px;
   margin: 0 0 1% 0;
 }
 
-.displayothers {
+.myprofile {
+  display: flex;
   flex: 30%;
-  order: 1;
-  padding: 0.4%;
-  margin: 0 0.5%;
-  border: 1px solid hsl(14, 89%, 52%);
 }
 
-.displayothers .mypic {
+.myprofile .mypic {
   width: 25%;
-  height: 100%;
   order: 1;
-  margin: 0 0.5%;
 }
 
-.displayothers img {
+.myprofile img {
   width: 100%;
   height: 100%;
   border-radius: 6px;
 }
 
+.myprofile .programs {
+  width: 75%;
+  order: 2;
+  border-radius: 6px;
+  border: 1px solid hsla(160, 79%, 54%, 0.932);
+}
+
+.programs p {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: right;
+  color: rgba(231, 227, 8, 0.979);
+  font-size: 1.6em;
+  margin: 3% 3%;
+}
+
 .displaycenter {
   flex: 40%;
-  order: 2;
-  margin: 0 0.5%;
-  border: 1px solid hsla(49, 79%, 54%, 0.863);
   text-align: center;
 }
 
 .displayscores {
   flex: 30%;
-  order: 3;
-  margin: 0 0.5%;
-  border: 1px solid hsl(14, 89%, 52%);
-  padding: 0.5%;
-  height: 100%;
 }
 
 .scoretext0 {
@@ -74,39 +75,27 @@ body {
   border: 1px solid #19aec2;
   background-color: #3c3f3d;
   border-radius: 8px;
-  height: 100%;
-}
-
-.scoretext1 p {
   color: rgb(231, 8, 8);
-  font-size: 1.4vw;
-  margin: 6% 3% 1%;
+  font-size: 1.4em;
+  padding: 2% 1%;
 }
 
 .scoretext2 {
   flex: 30%;
   border: 1px solid #ecde19;
   border-radius: 8px;
-  height: 100%;
-}
-
-.scoretext2 p {
   color: rgb(248, 248, 248);
-  font-size: 2vw;
-  margin: 0 7% 1.8%;
+  font-size: 2em;
+  padding: 1% 2%;
 }
 
 .scoretext3 {
   flex: 45%;
   border: 1px solid #32ec19;
   border-radius: 8px;
-  height: 100%;
-}
-
-.scoretext3 p {
   color: rgb(248, 248, 248);
-  font-size: 2vw;
-  margin: 0 3% 1.8%;
+  font-size: 2em;
+  padding: 1% 2%;
 }
 
 .scoreboard0 {
@@ -117,44 +106,35 @@ body {
 }
 
 .scoreboard1 {
-  flex: 30%;
+  flex: 25%;
   order: 1;
   border: 1px solid #ecde19;
   border-radius: 8px;
-  height: 100%;
-}
-
-.scoreboard1 p {
   color: rgb(248, 248, 248);
-  font-size: 1.5vw;
-  margin: 12% 7%;
+  font-size: 1.6em;
+  padding: 4% 2%;
 }
 
 .scoreboard2 {
-  flex: 40%;
+  flex: 30%;
   order: 2;
+  font-size: 3em;
+  padding: 1% 2%;
+  color: rgb(248, 248, 248);
   border: 1px solid #14be4d;
   background-color: rgba(18, 146, 146, 0.767);
   border-radius: 8px;
-  height: 100%;
-}
-
-.scoreboard2 p {
-  color: rgb(248, 248, 248);
-  font-size: 3vw;
-  margin: 0 7% 1.8%;
 }
 
 .rainprice {
-  flex: 30%;
+  flex: 45%;
   order: 3;
   padding: 1%;
-  font-size: 2.8vw;
+  font-size: 2.8em;
   border: 1px solid #e0a421;
   background-color: hsla(310, 54%, 37%, 0.349);
   color: rgb(250, 250, 250);
   border-radius: 8px;
-  height: 100%;
 }
 
 h1 {
@@ -177,7 +157,7 @@ h1 {
   display: inline-block;
   text-align: center;
   padding: 0.5%;
-  font-size: 2vw;
+  font-size: 2em;
   border-radius: 6px;
   outline: 4px solid #8fda16e7;
   cursor: pointer;
@@ -187,7 +167,7 @@ h1 {
   float: right;
   padding: 0.5%;
   margin: 0 2% 0 0;
-  font-size: 1vw;
+  font-size: 1em;
   border-radius: 6px;
   outline: 4px solid #da1616e7;
   cursor: pointer;
@@ -196,23 +176,16 @@ h1 {
 
 #displaybox {
   display: flex;
-  border: 2px solid hsl(39, 89%, 52%);
-  padding: 0.4% 0;
   margin: auto;
   background-color: hsla(0, 1%, 72%, 0.158);
   border-radius: 8px;
-  width: 100%;
-  /* height: 100%; */
-  height: 600px;
 }
 
 .raindivbox1 {
   display: flex;
   flex: 40%;
   order: 1;
-  margin: 0 0.5%;
   border-radius: 8px;
-  height: 100%;
 }
 
 .raindivbox1>div {
@@ -220,12 +193,11 @@ h1 {
   flex: 10%;
   border-radius: 8px;
   border: 1px solid hsl(145, 89%, 52%);
-  height: 100%;
 }
 
 .raindivbox1>div p {
-  font-size: 0.9vw;
-  margin: 5px 0;
+  font-size: 0.9em;
+  margin: 5px 0 0;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   color: #fdfdfdde;
@@ -240,7 +212,7 @@ h1 {
   padding: 0.1% 2.5%;
   border-radius: 6px;
   left: 12%;
-  top: 4%;
+  top: 23px;
   cursor: pointer;
 }
 
@@ -250,7 +222,7 @@ h1 {
   margin: 0 0.5%;
   padding: 0 0.6% 2%;
   border-radius: 8px;
-  border: 1px solid hsl(14, 89%, 52%);
+  outline: 2px solid hsl(14, 89%, 52%);
 }
 
 .raindivbox2 form {
@@ -258,16 +230,13 @@ h1 {
 }
 
 .caldisply {
-  height: 10%;
   margin: 0 0 8%;
 }
 
 .caldisply p {
-  width: 100%;
-  height: 100%;
   margin: 3% 0 0;
   padding: 1% 3% 0;
-  font-size: 2.5vw;
+  font-size: 2.5em;
   text-align: right;
   color: #ffffff;
   background-color: #737574;
@@ -300,7 +269,7 @@ h1 {
 .raindivbox2 form .calfooter {
   text-align: center;
   color: #cc7512f1;
-  font-size: 2.3vw;
+  font-size: 2.3em;
   letter-spacing: 3px;
   height: 7.5%;
 }
@@ -309,35 +278,32 @@ h1 {
   display: flex;
   flex: 38%;
   order: 3;
-  margin: 0 0.5%;
   border-radius: 8px;
   background-color: hsla(194, 34%, 41%, 0.349);
-  height: 100%;
 }
 
 .raindivbox3>div {
-  word-wrap: break-word;
   flex: 50%;
   padding: 1%;
   border-radius: 8px;
-  border: 1px solid hsl(327, 89%, 52%);
-  height: 100%;
+  border: 0.5px solid hsla(0, 0%, 100%, 0.575);
 }
 
 .raindivbox3>div h4 {
-  font-size: 1.3vw;
+  font-size: 1.3em;
   color: #f8d32f;
   margin: 0;
   text-align: center;
   letter-spacing: 1px;
 }
 
+.raindivbox3>div p {
+  color: #ee8610;
+}
+
 .raindivbox3>div span {
+  word-break: break-all;
   color: #fdfdfdfb;
   margin: 0 0 0 4px;
   letter-spacing: 1px;
-}
-
-.raindivbox3>div p {
-  color: #ee8610;
 }
