@@ -44,6 +44,7 @@ window.onclick = event => {
 
   if (!stopRain) {
     if (event.target == playStart) {
+      // startRainDrop();
       initProcess();
     }
 
@@ -205,32 +206,32 @@ modalBox[3].addEventListener('keydown', event => {
 
 //listening events to mouseover the rain drops and score points
 function rainEvents(rainbox, rainDropValue, displaybox, i) {
-  rainbox.addEventListener('mouseover', () => {
+  rainbox.addEventListener('click', () => {
     if (stopRain) {
       rainDropValue++
       let twowords5 = "rain collected(Skybox" + i + "): " + rainDropValue;
-      console.log(twowords5);
+      // console.log('hello'+twowords5);
       displaybox.innerHTML = twowords5;
-      console.log(rainDropCollect);
+      console.log('world'+rainDropCollect);
       rainScores[2].innerHTML = rainDropCollect;
 
       //rewards
       rainDropCollect++
       switch (rainDropCollect) {
         case (rainCycles):
-          console.log(rainReward[0]);
+          // console.log(rainReward[0]);
           rainScores[3].innerHTML = rainReward[0];
           break;
         case (2 * rainCycles):
-          console.log(rainReward[1]);
+          // console.log(rainReward[1]);
           rainScores[3].innerHTML = rainReward[1];
           break;
         case (3 * rainCycles):
-          console.log(rainReward[2]);
+          // console.log(rainReward[2]);
           rainScores[3].innerHTML = rainReward[2];
           break;
         case (4 * rainCycles):
-          console.log(rainReward[3]);
+          // console.log(rainReward[3]);
           rainScores[3].innerHTML = rainReward[3];
           break;
       }
@@ -261,7 +262,7 @@ function passCycles(modalInputVal) {
       twowords2 = " entered is not a number. Please start again and enter a number.";
 
       twowords3 = "Input " + twowords1 + twowords2;
-      console.log(twowords3);
+      // console.log(twowords3);
       htmlConsole1[11].innerHTML = twowords3;
       playStart.focus(), modalRmoval();
       return;
@@ -271,20 +272,20 @@ function passCycles(modalInputVal) {
       twowords2 = " entered is not a number. Please enter number between 50 - 500 to start the game.";
 
       twowords3 = "Input " + twowords1 + twowords2;
-      console.log(twowords3);
+      // console.log(twowords3);
       htmlConsole1[11].innerHTML = twowords3;
     }
   } else {
     if (modalBox[2].textContent === 'Passcode') {
       if (modalInputVal != '2831') {
         twowords1 = "Passcode entered is incorrect. Please start again and enter the correct passcode.";
-        console.log(twowords1);
+        // console.log(twowords1);
         htmlConsole1[11].innerHTML = twowords1;
         playStart.focus(), modalRmoval();
         return;
       } else {
         twowords1 = "The passcode is correct! Please enter rhe username to continue.";
-        console.log(twowords1);
+        // console.log(twowords1);
         htmlConsole1[11].innerHTML = twowords1;
         modalBoxCall('Username', 'Enter the username');
       }
@@ -292,15 +293,15 @@ function passCycles(modalInputVal) {
       htmlConsole1[12].innerHTML = '';
       if (keysCycles < 50) {
         twowords1 = "Number of cycles entered is below 50. Please enter more than 50 cycles to start the game.";
-        console.log(twowords1);
+        // console.log(twowords1);
         htmlConsole1[11].innerHTML = twowords1;
       } else {
         rainCycles = parseInt(modalInputVal);
         twowords1 = "You've " + rainCycles + " cyles to play.";
-        console.log(twowords1);
+        // console.log(twowords1);
         htmlConsole1[11].innerHTML = twowords1;
         twowords1 = "The game will start in three seconds.";
-        console.log(twowords1);
+        // console.log(twowords1);
         htmlConsole1[12].innerHTML = twowords1;
         modalRmoval();
 
@@ -317,7 +318,7 @@ function usrNameInput(usrName) {
   let twowords1, twowords2;
   if (usrName.toLowerCase() == 'uche') {
     twowords1 = "The username is: " + usrName + ". That's correct! You can now enter the cycles amount to play the game (50 - 500).";
-    console.log(twowords1);
+    // console.log(twowords1);
     htmlConsole1[11].innerHTML = twowords1;
     htmlConsole1[12].innerHTML = '';
 
@@ -326,7 +327,7 @@ function usrNameInput(usrName) {
     modalBoxCall('PlayCycle', 'Enter game cycles');
   } else {
     twowords1 = "Wrong username entered. Please try again and enter the correct usename.";
-    console.log(twowords1);
+    // console.log(twowords1);
     htmlConsole1[11].innerHTML = twowords1;
     modalBox[3].focus();
 
@@ -414,11 +415,11 @@ function rainAnimateTimer(rainAdventure, displaybox, rainbox, rainDrop, rainDrop
 
     rainDrop--;
     let twowords1 = "raindrop" + num + ": " + rainDrop;
-    console.log(twowords1);
+    // console.log(twowords1);
     displaybox.innerHTML = twowords1;
 
     rainDropsCnt++;
-    console.log(rainDropsCnt);
+    // console.log(rainDropsCnt);
     rainScores[0].innerHTML = rainDropsCnt;
 
     // checking that all droplets has completed a cycle
@@ -580,7 +581,7 @@ function calculatorLogic(event) {
             calDisplay.innerHTML += keyValues[i].value;
           }
           htmlConsole2[14].innerHTML += keyValues[i].value;
-          console.log(calDisplay.innerHTML.length)
+          // console.log(calDisplay.innerHTML.length)
           equalKey = '';
         }
       }
